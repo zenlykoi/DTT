@@ -1,11 +1,11 @@
-var amount = 100;
+var amount = 100.012345;
 var chance = 69.96;
 var isHigh = true;
 var delay = 2000;
 
 function bet(amount, chance, isHigh)
 {
-	cd.amount.d[0] = amount;
+	cd.amount.constructor(amount);
 	cd.betChance = chance;
 	cd.isHigh = isHigh;
 
