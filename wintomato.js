@@ -8,7 +8,7 @@ var delay = 2000;
 
 function bet(amount, chance, bethigh) {
     return new Promise(function (resolve, reject) {
-        const betData = `{"type":"auto","m":true,"roll":{"over":${bethigh ? 1 : 0},"rv":${bethigh ? parseFloat((99.99 - chance).toFixed(2)) : chance},"pa":${Math.floor((99/chance) * 1000) / 1000},"bet":${amount.toFixed(8)},"short":"usdt"},"auto":{"bet":${amount.toFixed(8)},"over":${bethigh ? 1 : 0},"chance":${chance},"num":1,"pr":null,"l":{"n":0,"sn":0,"ev":[0,1],"be":[0,0],"ch":[0,0],"st":[1,0],"re":[0,0]},"w":{"n":0,"sn":0,"ev":[0,1],"be":[0,0],"ch":[0,0],"st":[1,0],"re":[0,0]},"li":[0,0,0,0,0]}}`;
+        const betData = `{"type":"auto","m":true,"roll":{"over":${bethigh ? 1 : 0},"rv":${bethigh ? parseFloat((99.99 - chance).toFixed(2)) : chance},"pa":${Math.floor((99/chance) * 1000) / 1000},"bet":${amount.toFixed(8)},"short":"${_currency}"},"auto":{"bet":${amount.toFixed(8)},"over":${bethigh ? 1 : 0},"chance":${chance},"num":1,"pr":null,"l":{"n":0,"sn":0,"ev":[0,1],"be":[0,0],"ch":[0,0],"st":[1,0],"re":[0,0]},"w":{"n":0,"sn":0,"ev":[0,1],"be":[0,0],"ch":[0,0],"st":[1,0],"re":[0,0]},"li":[0,0,0,0,0]}}`;
         
         _socket.emit('dice', {
             z: Compresser.compressToBase64(betData)
@@ -396,9 +396,11 @@ function handleWhenFinishBet(data)
 
 function insertDom(initialData)
 {
-    const currency = document.querySelector('.diceGame .stats .diceBtn img').title;
+    const currency = document.querySelector('.diceGame .stats .diceBtn:last-child img').title;
     const {balance: balances} = initialData;
     const balance = balances['balance' + '_' + currency];
+
+    window._currency = currency;
 
     const html = `
         <div id="__np__insertDOM" style="position: absolute;top: 0px;right: 0px;z-index: 10000000000000000!important;width: 250px;height: 380px;border: 1px solid red;background: rgb(54, 80, 18, 0.6);">
