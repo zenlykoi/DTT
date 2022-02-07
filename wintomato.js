@@ -406,6 +406,7 @@ function insertDom(initialData)
         <div id="__np__insertDOM" style="position: absolute;top: 0px;right: 0px;z-index: 10000000000000000!important;width: 250px;height: 380px;border: 1px solid red;background: rgb(54, 80, 18, 0.6);">
             <button id="__np__startbtn" style="background-color: white;font-size: 25px;margin: 5px;padding: 3px;">Start</button>
             <button id="__np__stopbtn" style="background-color: white;font-size: 25px;margin: 5px;padding: 3px;">Stop</button>
+	    <input type="text" id="baseAmount" />
             <br>
             <ul style="margin-left: 5px;">
                 <li style="font-size: 17px;color: white;">
@@ -451,6 +452,8 @@ function insertDom(initialData)
 
         document.querySelector('#__np__insertDOM #__np__startbtn').onclick = function()
         {
+	    basebet = parseFloat(document.querySelector('#baseAmount').value);
+	    nextbet = basebet;
             loop = setInterval(function(){
                 bet(parseFloat(nextbet), parseFloat(chance), bethigh).then(function(res){
                     handleWhenFinishBet(res);
