@@ -7,5 +7,5 @@ unicorn.yody.io/*
 [RegExp]
 speedtest
 unicorn.yody.io
-*.yody2.io
+*.yody5.io
 #END
