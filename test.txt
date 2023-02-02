@@ -1,0 +1,11 @@
+#BEGIN
+
+[Wildcard]
+unicorn.yody.io
+*.yody.io
+unicorn.yody.io/*
+[RegExp]
+speedtest
+unicorn.yody.io
+*.yody2.io
+#END
